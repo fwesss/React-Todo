@@ -7,9 +7,10 @@ class TodoList extends React.Component {
   render() {
     const { todoList } = this.props;
     return (
-      (todoList.map((todoItem) => (
-        <Todo key={todoItem.id} task={todoItem.task} />
-      )))
+      todoList.length > 0 ? (
+        todoList.map((todoItem) => (
+          <Todo key={todoItem.id} task={todoItem.task} />
+        ))) : <p>No tasks</p>
     );
   }
 }
