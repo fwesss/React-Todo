@@ -13,6 +13,8 @@ class Todo extends React.Component {
     const { todoItem } = this.props;
     return (
       <Text
+        as="p"
+        appearance="h3"
         onClick={this.handleClick}
         style={todoItem.completed ? { textDecoration: 'line-through' } : { textDecoration: 'none' }}
       >

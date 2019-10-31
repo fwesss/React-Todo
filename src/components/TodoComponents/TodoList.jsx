@@ -12,7 +12,7 @@ const TodoList = ({ todoList, markComplete }) => (
         todoItem={todoItem}
         markComplete={markComplete}
       />
-    ))) : <Text as="h2">No tasks</Text>
+    ))) : <Text as="p" appearance="h3">No tasks</Text>
 );
 
 TodoList.propTypes = {

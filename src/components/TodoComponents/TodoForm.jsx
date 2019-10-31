@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import FormField from 'mineral-ui/Form/FormField';
 import TextInput from 'mineral-ui/TextInput';
 import Button from 'mineral-ui/Button';
+import Box from 'mineral-ui/Box';
+
+const FormButton = styled(Button)({
+  margin: '1em',
+});
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -36,13 +42,13 @@ class TodoForm extends React.Component {
   render() {
     const { state } = this;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Box as="form" onSubmit={this.handleSubmit}>
         <FormField name="task" label="Task" required>
           <TextInput onChange={this.handleChange} value={state.value} />
         </FormField>
-        <Button primary type="submit">Add Todo</Button>
-        <Button secondary type="submit" onClick={this.handleClearComplete}>Clear Completed</Button>
-      </form>
+        <FormButton primary type="submit">Add Todo</FormButton>
+        <FormButton secondary type="submit" onClick={this.handleClearComplete}>Clear Completed</FormButton>
+      </Box>
     );
   }
 }
