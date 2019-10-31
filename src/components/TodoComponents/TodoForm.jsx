@@ -49,6 +49,7 @@ class TodoForm extends React.Component {
 
 TodoForm.propTypes = {
   addTodo: PropTypes.func.isRequired,
+  clearComplete: PropTypes.func.isRequired,
 };
 
 export default TodoForm;
