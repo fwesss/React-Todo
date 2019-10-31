@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Text from 'mineral-ui/Text';
+import styled from '@emotion/styled';
+
+const List = styled('ul')({
+  listStyle: 'none',
+  paddingLeft: 0,
+});
 
 class Todo extends React.Component {
   handleClick = (e) => {
@@ -12,14 +18,16 @@ class Todo extends React.Component {
   render() {
     const { todoItem } = this.props;
     return (
-      <Text
-        as="p"
-        appearance="h3"
-        onClick={this.handleClick}
-        style={todoItem.completed ? { textDecoration: 'line-through' } : { textDecoration: 'none' }}
-      >
-        {todoItem.task}
-      </Text>
+      <List>
+        <Text
+          as="li"
+          appearance="h3"
+          onClick={this.handleClick}
+          style={todoItem.completed ? { textDecoration: 'line-through' } : { textDecoration: 'none' }}
+        >
+          {todoItem.task}
+        </Text>
+      </List>
     );
   }
 }
