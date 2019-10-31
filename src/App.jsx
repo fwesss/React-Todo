@@ -53,6 +53,7 @@ class App extends React.Component {
     return (
       <StrictMode>
         <Flex direction="column" alignItems="center">
+          <h1>Todo List</h1>
           <TodoList todoList={todoList} markComplete={this.markComplete} />
           <TodoForm addTodo={this.addTodo} clearComplete={this.clearComplete} />
         </Flex>
