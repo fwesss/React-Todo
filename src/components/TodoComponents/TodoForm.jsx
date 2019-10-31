@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button, Form, FormField, TextInput,
-} from 'grommet';
+import FormField from 'mineral-ui/Form/FormField';
+import TextInput from 'mineral-ui/TextInput';
+import Button from 'mineral-ui/Button';
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -27,15 +27,22 @@ class TodoForm extends React.Component {
     });
   };
 
+  handleClearComplete = (e) => {
+    e.preventDefault();
+    const { clearComplete } = this.props;
+    clearComplete();
+  };
+
   render() {
     const { state } = this;
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <FormField name="task" label="Task">
-          <TextInput onChange={this.handleChange} value={state.value} required />
+      <form onSubmit={this.handleSubmit}>
+        <FormField name="task" label="Task" required>
+          <TextInput onChange={this.handleChange} value={state.value} />
         </FormField>
-        <Button type="submit" primary label="Add Todo" />
-      </Form>
+        <Button primary type="submit">Add Todo</Button>
+        <Button secondary type="submit" onClick={this.handleClearComplete}>Clear Completed</Button>
+      </form>
     );
   }
 }

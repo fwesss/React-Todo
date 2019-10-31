@@ -1,5 +1,5 @@
 import React, { StrictMode } from 'react';
-import { Grommet } from 'grommet';
+import { Flex } from 'mineral-ui';
 
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
@@ -26,14 +26,36 @@ class App extends React.Component {
     });
   };
 
+  markComplete = (id) => {
+    const { todoList } = this.state;
+    this.setState({
+      todoList: todoList.map((todoItem) => {
+        if (todoItem.id === id) {
+          return {
+            ...todoItem,
+            completed: !todoItem.completed,
+          };
+        }
+        return todoItem;
+      }),
+    });
+  };
+
+  clearComplete = () => {
+    const { todoList } = this.state;
+    this.setState({
+      todoList: todoList.filter((todoItem) => !todoItem.completed),
+    });
+  };
+
   render() {
     const { todoList } = this.state;
     return (
       <StrictMode>
-        <Grommet>
-          <TodoList todoList={todoList} />
-          <TodoForm addTodo={this.addTodo} />
-        </Grommet>
+        <Flex direction="column" alignItems="center">
+          <TodoList todoList={todoList} markComplete={this.markComplete} />
+          <TodoForm addTodo={this.addTodo} clearComplete={this.clearComplete} />
+        </Flex>
       </StrictMode>
     );
   }
