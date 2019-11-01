@@ -12,6 +12,17 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      todoList: JSON.parse(localStorage.getItem('todoList')),
+    });
+  }
+
+  componentDidUpdate() {
+    const { todoList } = this.state;
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+  }
+
   addTodo = (task) => {
     const { todoList } = this.state;
     this.setState({
