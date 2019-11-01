@@ -3,6 +3,7 @@ import { Flex } from 'mineral-ui';
 
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import Search from './components/TodoComponents/Search';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class App extends React.Component {
           task,
           id: Date.now(),
           completed: false,
+          queried: true,
         },
       ],
     });
@@ -59,12 +61,31 @@ class App extends React.Component {
     });
   };
 
+  search = (query) => {
+    const { todoList } = this.state;
+    this.setState({
+      todoList: todoList.map((todoItem) => {
+        if (todoItem.task.includes(query)) {
+          return {
+            ...todoItem,
+            queried: true,
+          };
+        }
+        return {
+          ...todoItem,
+          queried: false,
+        };
+      }),
+    });
+  };
+
   render() {
     const { todoList } = this.state;
     return (
       <StrictMode>
         <Flex direction="column" alignItems="center">
           <h1>Todo List</h1>
+          <Search search={this.search} />
           <TodoList todoList={todoList} markComplete={this.markComplete} />
           <TodoForm addTodo={this.addTodo} clearComplete={this.clearComplete} />
         </Flex>

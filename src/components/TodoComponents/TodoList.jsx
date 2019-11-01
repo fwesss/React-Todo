@@ -6,13 +6,17 @@ import Todo from './Todo';
 
 const TodoList = ({ todoList, markComplete }) => (
   todoList.length > 0 ? (
-    todoList.map((todoItem) => (
-      <Todo
-        key={todoItem.id}
-        todoItem={todoItem}
-        markComplete={markComplete}
-      />
-    ))) : <Text as="p" appearance="h3">No tasks</Text>
+    todoList
+      .filter((todoItem) => (
+        todoItem.queried === true
+      ))
+      .map((queriedItem) => (
+        <Todo
+          key={queriedItem.id}
+          todoItem={queriedItem}
+          markComplete={markComplete}
+        />
+      ))) : <Text as="p" appearance="h3">No tasks</Text>
 );
 
 TodoList.propTypes = {
